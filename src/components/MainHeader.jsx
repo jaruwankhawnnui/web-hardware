@@ -64,8 +64,7 @@ const MainHeader = ({ session }) => {
           onChange={handleSearch}
           className='bg-transparent w-full outline-none text-gray-700'
         />
-        <IoSearchCircleSharp className='h-9 w-8 text-gray-50
-        0' />
+        <IoSearchCircleSharp className='h-9 w-8 text-gray-500' />
       </div>
       <div className='flex px-5 p-2 items-center gap-6'>
         <div>
@@ -87,54 +86,54 @@ const MainHeader = ({ session }) => {
             className="rounded-full cursor-pointer"
             onClick={toggleMenu}
           />
-          {menuVisible && (
-            <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg py-1">
-              <ul>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <FaHome className='mr-2' />
-                  <Link href="/">หน้าแรก</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <TiShoppingCart className='mr-2' />
-                  <Link href="/cart">รถเข็น</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <FaThList className='mr-2' />
-                  <Link href="/equipment">ยืมอุปกรณ์</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <CiBoxList className='mr-2' />
-                  <Link href="/rentalinfo">แสดงข้อมูลการยืม</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <MdOutlinePostAdd className='mr-2' />
-                  <Link href="/portweb">โพสต์</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <FaNewspaper className='mr-2' />
-                  <Link href="/webnew">ข่าวสารเว็บไซต์</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <IoChatboxEllipsesSharp className='mr-2' />
-                  <Link href="/chatweb">แชทพูดคุย</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <GrContactInfo className='mr-2' />
-                  <Link href="/contact">ข้อมูลการติดต่อ</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <RiFileListLine className='mr-2' />
-                  <Link href="/agreement">ข้อตกลงการใช้งาน</Link>
-                </li>
-                <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-2'>
-                  <FaSignOutAlt className='mr-2 flex' />
-                  <Logout />
-                </li>
-              </ul>
-            </div>
-          )}
         </div>
-        
+      </div>
+      {menuVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={toggleMenu}></div>
+      )}
+      <div className={`fixed right-0 top-0 h-full bg-white w-64 shadow-lg z-50 transform ${menuVisible ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}>
+        <ul className='p-4'>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <FaHome className='mr-2' />
+            <Link href="/home">หน้าแรก</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <TiShoppingCart className='mr-2' />
+            <Link href="/cart">รถเข็น</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <FaThList className='mr-2' />
+            <Link href="/equipment">ยืมอุปกรณ์</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <CiBoxList className='mr-2' />
+            <Link href="/rentalinfo">แสดงข้อมูลการยืม</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <MdOutlinePostAdd className='mr-2' />
+            <Link href="/portweb">โพสต์</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <FaNewspaper className='mr-2' />
+            <Link href="/webnew">ข่าวสารเว็บไซต์</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <IoChatboxEllipsesSharp className='mr-2' />
+            <Link href="/chatweb">แชทพูดคุย</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <GrContactInfo className='mr-2' />
+            <Link href="/contact">ข้อมูลการติดต่อ</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
+            <RiFileListLine className='mr-2 ' />
+            <Link href="/agreement">ข้อตกลงการใช้งาน</Link>
+          </li>
+          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4 '>
+            <FaSignOutAlt className='mr-2 ' />
+            <Logout />
+          </li>
+        </ul>
       </div>
       {searchResults.length > 0 && (
         <div className='absolute top-16 left-0 right-0 bg-white shadow-lg p-4'>

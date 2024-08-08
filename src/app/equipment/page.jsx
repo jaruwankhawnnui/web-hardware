@@ -21,10 +21,10 @@ const EquipmentPage = async () => {
             <h1 className='text-4xl font-medium mx-9 mt-4'>ยืมอุปกรณ์</h1>
           </div>
           <div className='flex h-10 justify-around'>
-            <h1 className='text-xs font-bold font-sans-serif'>รายการอุปกรณ์</h1>
-            <h1 className='text-xs font-bold font-sans-serif'>ราคาต่อชิ้น</h1>
-            <h1 className='text-xs font-bold font-sans-serif'>จำนวน</h1>
-            <h1 className='text-xs font-bold font-sans-serif'>ราคารวม</h1>
+            <h1 className='text-sm font-sans-serif font-bold w-26 text-center'>รายการอุปกรณ์</h1>
+            <h1 className='text-sm font-sans-serif font-bold w-20 pl-1 text-center'>ราคาต่อชิ้น</h1>
+            <h1 className='text-sm font-sans-serif font-bold w-10 pl-20 mr-30 text-center'>จำนวน</h1>
+            <h1 className='text-sm font-sans-serif font-bold w-15 pl-4 text-center'>ราคารวม</h1>
           </div>
         </div>
         <div className='bg-white mx-40 mt-5 mr-40 shadow-lg'>
@@ -37,14 +37,14 @@ const EquipmentPage = async () => {
                   <p className='text-gray-500 text-xs '>{item.text.split('\n')[1]}</p>
                 </div>
               
-                <div className='flex-1  flex-col items-center  mt-2 w-20 '>
-                  <p className='text-black text-sm '>{item.price} บาท</p>
+                <div className='flex-1  flex-col items-center mx-40 mr-30 pl-10 font- mt-2  '>
+                  <p className='text-black text-sm '>{item.price} ฿</p>
                 </div>
-                <div className='flex-1 flex-col items-center mt-2 w-10'>
+                <div className='flex-1 flex-col items-center mx-32 font-bold mt-2 w-10'>
                   <p className='text-black text-sm'>{item.quantity}</p>
                 </div>
-                <div className='flex-1 flex-col items-center mt-2 w-14'>
-                  <p className='text-black text-sm'>{item.price * item.quantity} บาท</p>
+                <div className='flex-1 flex-col items-center mx-30 font-bold mt-2 w-14'>
+                  <p className='text-black text-sm'>{item.price * item.quantity} ฿</p>
                 </div>
                 </div>
             

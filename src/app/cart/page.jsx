@@ -6,8 +6,8 @@ import { IoClose } from "react-icons/io5";
 import Layout from "@/components/Layout";
 import { auth } from "@/auth"; // Ensure you have this function implemented
 
+
 const Cart = () => {
-  
   const initialItems = [
     { text: "Arduino\nBOARD", image: "/Arduino.jpg", price: 300, quantity: 1 },
     { text: "Banana ject\nDIP", image: "/Banana.jpg", price: 20, quantity: 10 },
@@ -74,6 +74,19 @@ const Cart = () => {
     setCheckedCount(newCheckedItems.filter(item => item).length);
   };
 
+  const increaseQuantity = (index) => {
+    const newItems = [...items];
+    newItems[index].quantity += 1;
+    setItems(newItems);
+  };
+
+  const decreaseQuantity = (index) => {
+    const newItems = [...items];
+    if (newItems[index].quantity > 1) {
+      newItems[index].quantity -= 1;
+      setItems(newItems);
+    }
+  };
 
   return (
     <Layout session={session}>
@@ -92,7 +105,7 @@ const Cart = () => {
           </div>
         </div>
 
-        <div className='bg-white mx-40 mt-5 shadow-lg flex  flex-col'>
+        <div className='bg-white mx-40 mt-5 shadow-lg flex flex-col'>
           {items.map((item, index) => {
             const [boldText, normalText] = item.text.split('\n');
             const totalPrice = item.price * item.quantity;
@@ -126,7 +139,11 @@ const Cart = () => {
                     <div className='text-black text-l font-bold'>{item.price} ฿</div>
                   </div>
                   <div className='flex flex-col items-center mt-9 w-10'>
-                    <div className='text-black text-l font-bold'>{item.quantity}</div>
+                    <div className='flex items-center'>
+                      <button onClick={() => decreaseQuantity(index)} className='px-3 py-1 bg-gray-300 rounded-l'>-</button>
+                      <span className='px-4 py-1 bg-white border-t border-b'>{item.quantity}</span>
+                      <button onClick={() => increaseQuantity(index)} className='px-3 py-1 bg-gray-300 rounded-r'>+</button>
+                    </div>
                   </div>
                   <div className='flex flex-col items-center mt-9 w-14'>
                     <div className='text-black text-l font-bold'>{totalPrice} ฿</div>

@@ -30,7 +30,7 @@ const Card = () => {
         <div>
           <div className='bg-white rounded-lg p-10 mx-60 flex items-start shadow-lg'>
             <div className='w-48 h-48 bg-gray-300 border-2 border-gray-500 rounded-md overflow-hidden'>
-              <img src="https://via.placeholder.com/150" alt="Sample" className='w-full h-full object-cover'/>
+              <img src="public/Arduino" alt="Sample" className='w-full h-full object-cover'/>
             </div>
             <div className='ml-6 flex-1'>
               <h2 className='text-2xl font-bold'>ADC0804</h2>
