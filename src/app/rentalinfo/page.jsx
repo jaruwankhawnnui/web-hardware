@@ -13,6 +13,12 @@ const rentailinfo = async () => {
     { text: "Multimeter\nAC/DC", image: "/mutti.jpg", price: 150, quantity: 3, status: 'returned', borrowDate: "2024-01-04", returnDate: "2024-01-14" }
   ];
 
+  // Sort the items so that 'not_returned' comes first, followed by 'borrowing', and then 'returned'
+  const sortedItems = items.sort((a, b) => {
+    const statusOrder = ['not_returned', 'borrowing', 'returned'];
+    return statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status);
+  });
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'not_returned':
@@ -40,59 +46,60 @@ const rentailinfo = async () => {
   };
 
   return (
-    <Layout session={session}>
-      <div className=''>
-        <div className='bg-white mx-40 mt-1 mr-40 shadow-lg'>
-          <div className='flex h-40 '>
-            <h1 className='flex text-4xl mx-9 mt-6 font-medium-9'>แสดงข้อมูลการยืม</h1>
+    <div className="bg-gray-100">
+      <Layout session={session}>
+        <div className=''>
+          <div className='bg-white mx-40 mt-1 mr-40 shadow-lg'>
+            <div className='flex h-40'>
+              <h1 className='flex text-4xl mx-9 mt-6 font-medium-9'>แสดงข้อมูลการยืม</h1>
+            </div>
+            <div className='flex h-10'>
+              <h1 className='text-sm font-sans-serif font-bold flex- pl-28  text-center'>รายการอุปกรณ์</h1>
+              <h1 className='text-sm font-sans-serif font-bold flex-1 pl-20 text-center'>ราคาต่อชิ้น</h1>
+              <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>จำนวน</h1>
+              <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18  text-center'>ราคารวม</h1>
+              <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>วันที่ยืม</h1>
+              <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>กำหนดคืน</h1>
+              <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>ยกเลิก</h1>
+            </div>
           </div>
-          <div className='flex h-10 '>
-            <h1 className='text-sm font-sans-serif font-bold flex- pl-28  text-center'>รายการอุปกรณ์</h1>
-            <h1 className='text-sm font-sans-serif font-bold flex-1 pl-20 text-center'>ราคาต่อชิ้น</h1>
-            <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>จำนวน</h1>
-            <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18  text-center'>ราคารวม</h1>
-            <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>วันที่ยืม</h1>
-            <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>กำหนดคืน</h1>
-            <h1 className='text-sm font-sans-serif font-bold flex-1 pl-18 text-center'>ยกเลิก</h1>
-          </div>
-        </div>
 
-        {items.map((item, index) => (
-          <div key={index} className='bg-white mx-40 mt-5 mr-40 shadow-lg relative'>
-            <div className={`absolute top-0 left-0 right-0 h-9 ${getStatusColor(item.status)}`}>
-              <p className='text-center text-black mt-2 text-sm'>{getStatusText(item.status)}</p>
+          {sortedItems.map((item, index) => (
+            <div key={index} className={`mx-40 mt-5 mr-40 shadow-lg ${getStatusColor(item.status)}`}>
+              <div className='flex items-center p-6'>
+
+                
+                <div className="">
+                  <img src={item.image} alt={item.text.split('\n')[0]} className='h-32 w-46 mt-5 object-cover rounded-lg shadow-xl' />
+                </div>
+                <div className='flex-1 ml-4 '>
+                  <div className='text-black text-l mt-10 font-bold'>{item.text.split('\n')[0]}</div>
+                  <div className='text-gray-500 text-xs'>{item.text.split('\n')[1]}</div>
+                </div>
+                <div className='flex-1 flex-col items-center mt-9 pl-7 w-20'>
+                  <p className='text-black text-sm'>{item.price} ฿</p>
+                </div>
+                <div className='flex-1 flex-col items-center mt-9 pl-8 w-10'>
+                  <p className='text-black text-sm'>{item.quantity}</p>
+                </div>
+                <div className='flex-1 flex-col items-center mt-9 w-10'>
+                  <p className='text-black text-sm'>{item.price * item.quantity} ฿</p>
+                </div>
+                <div className='flex-1 flex-col items-center pr-5 mt-9 w-10'>
+                  <p className='text-black text-sm'>{item.borrowDate}</p>
+                </div>
+                <div className='flex-1 flex-col items-center mt-9 pr-2 w-18'>
+                  <p className='text-black text-sm'>{item.returnDate}</p>
+                </div>
+                <div className='flex justify-center mt-9 w-20'>
+                  <button className='text-red-500'><IoClose size={20} /></button>
+                </div>
+              </div>
             </div>
-            <div className='flex items-center p-6'>
-              <div className="">
-                <img src={item.image} alt={item.text.split('\n')[0]} className='h-32 w-46 mt-5 object-cover rounded-lg shadow-xl' />
-              </div>
-              <div className='flex-1 ml-4 '>
-                <div className='text-black text-l mt-10  font-bold'>{item.text.split('\n')[0]}</div>
-                <div className='text-gray-500 text-xs '>{item.text.split('\n')[1]}</div>
-              </div>
-              <div className='flex-1 flex-col items-center mt-9 pl-7 w-20'>
-                <p className='text-black text-sm font-bold'>{item.price} ฿</p>
-              </div>
-              <div className='flex-1 flex-col items-center mt-9 pl-8 w-10'>
-                <p className='text-black text-sm font-bold'>{item.quantity}</p>
-              </div>
-              <div className='flex-1 flex-col items-center mt-9 w-10'>
-                <p className='text-black text-sm font-bold'>{item.price * item.quantity} ฿</p>
-              </div>
-              <div className='flex-1 flex-col items-center pr-5 mt-9 w-10'>
-                <p className='text-black text-sm font-bold'>{item.borrowDate}</p>
-              </div>
-              <div className='flex-1 flex-col items-center mt-9 pr-2 w-18'>
-                <p className='text-black text-sm font-bold'>{item.returnDate}</p>
-              </div>
-              <div className='flex justify-center mt-9 w-20'>
-                <button className='text-red-500 '><IoClose size={20} /></button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Layout>
+          ))}
+        </div>
+      </Layout>
+    </div>
   );
 };
 

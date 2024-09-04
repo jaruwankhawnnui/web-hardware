@@ -111,16 +111,13 @@ const MainHeader = ({ session }) => {
           </li>
           <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
             <MdOutlinePostAdd className='mr-2' />
-            <Link href="/portweb">โพสต์</Link>
+            <Link href="/comment">Comment</Link>
           </li>
           <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
             <FaNewspaper className='mr-2' />
             <Link href="/webnew">ข่าวสารเว็บไซต์</Link>
           </li>
-          <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
-            <IoChatboxEllipsesSharp className='mr-2' />
-            <Link href="/chatweb">แชทพูดคุย</Link>
-          </li>
+          
           <li className='flex justify-start items-center hover:bg-blue-200 hover:text-blue-800 rounded-xl p-4'>
             <GrContactInfo className='mr-2' />
             <Link href="/contact">ข้อมูลการติดต่อ</Link>

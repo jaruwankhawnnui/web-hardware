@@ -14,9 +14,10 @@ const EquipmentPage = async () => {
   const session = await auth();
 
   return (
+    <div className='bg-gray-100 '>
     <Layout session={session}>
-      <div className=''>
-        <div className='bg-white mx-40 mt-8 mr-40 shadow-lg '>
+     
+        <div className='bg-white mx-40 mr-40 shadow-lg '>
           <div className='flex h-40 '>
             <h1 className='text-4xl font-medium mx-9 mt-4'>ยืมอุปกรณ์</h1>
           </div>
@@ -36,18 +37,18 @@ const EquipmentPage = async () => {
                   <h2 className='text-black text-l font-bold'>{item.text.split('\n')[0]}</h2>
                   <p className='text-gray-500 text-xs '>{item.text.split('\n')[1]}</p>
                 </div>
-              
+
                 <div className='flex-1  flex-col items-center mx-40 mr-30 pl-10 font- mt-2  '>
                   <p className='text-black text-sm '>{item.price} ฿</p>
                 </div>
-                <div className='flex-1 flex-col items-center mx-32 font-bold mt-2 w-10'>
+                <div className='flex-1 flex-col items-center mx-32  mt-2 w-10'>
                   <p className='text-black text-sm'>{item.quantity}</p>
                 </div>
-                <div className='flex-1 flex-col items-center mx-30 font-bold mt-2 w-14'>
+                <div className='flex-1 flex-col items-center mx-30  mt-2 w-14'>
                   <p className='text-black text-sm'>{item.price * item.quantity} ฿</p>
                 </div>
-                </div>
-            
+              </div>
+
               <div className="border-b border-black mx-8"></div>
             </div>
           ))}
@@ -58,8 +59,9 @@ const EquipmentPage = async () => {
             <button className="shadow-lg shadow-indigo-500/40 bg-blue-200 h-10 w-40 mt-7 mr-5">พิมใบยืมอุปกรณ์</button>
           </div>
         </div>
-      </div>
+      
     </Layout>
+    </div>
   );
 };
 

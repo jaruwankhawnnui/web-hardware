@@ -21,12 +21,14 @@ const Cart = () => {
     { text: "Ic Register 10\nDescription 10", image: "", price: 100, quantity: 10 },
   ];
 
+
   const [items, setItems] = useState(initialItems);
   const [checkedItems, setCheckedItems] = useState(new Array(initialItems.length).fill(false));
   const [checkedCount, setCheckedCount] = useState(0);
   const [totalCheckedPrice, setTotalCheckedPrice] = useState(0);
   const [isSelectAllChecked, setIsSelectAllChecked] = useState(false);
   const [session, setSession] = useState(null);
+
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -89,6 +91,7 @@ const Cart = () => {
   };
 
   return (
+    <div className='bg-gray-100'>
     <Layout session={session}>
       <div>
         <div className='bg-white mx-40 mt-1 mr-40 shadow-lg'>
@@ -131,12 +134,12 @@ const Cart = () => {
                     ></div>
                     <div className='mt-9 flex-1 w-32 text-sm '>
                       <div className='text-black text-sm font-bold'>{boldText}</div>
-                      <div className='text-gray-500 text-xs font-bold'>{normalText}</div>
+                      <div className='text-gray-500 text-xs '>{normalText}</div>
                     </div>
                   </div>
 
                   <div className='flex flex-col items-center mt-9 w-20 '>
-                    <div className='text-black text-l font-bold'>{item.price} ฿</div>
+                    <div className='text-black text-l '>{item.price} ฿</div>
                   </div>
                   <div className='flex flex-col items-center mt-9 w-10'>
                     <div className='flex items-center'>
@@ -146,7 +149,7 @@ const Cart = () => {
                     </div>
                   </div>
                   <div className='flex flex-col items-center mt-9 w-14'>
-                    <div className='text-black text-l font-bold'>{totalPrice} ฿</div>
+                    <div className='text-black text-l '>{totalPrice} ฿</div>
                   </div>
                   <div className='flex justify-center mt-9 w-9'>
                     <IoClose className='text-red-600 h-7 w-8 cursor-pointer' onClick={() => handleRemoveItem(index)} />
@@ -176,6 +179,7 @@ const Cart = () => {
         </div>
       </div>
     </Layout>
+    </div>
   );
 };
 
