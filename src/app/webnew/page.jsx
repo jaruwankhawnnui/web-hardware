@@ -1,32 +1,67 @@
-"use client";
+'use client';
+
 import React from 'react';
-import { useRouter } from 'next/router';
-import Layout from "@/components/Layout"; // Assuming you have a Layout component
+import Layout from "@/components/Layout"; // สมมติว่าคุณมี Layout component อยู่แล้ว
 
-const FullNewsPage = ({ newsData }) => {
-  const router = useRouter();
-  const { id } = router.query;
-  
-  const article = newsData.find(news => news.id === parseInt(id, 10));
-
-  if (!article) {
-    return <p>ไม่พบข่าวที่คุณกำลังหา</p>;
-  }
+const NewsPage = () => {
+  // ข่าวตัวอย่าง
+  const newsData = [
+    {
+      id: 1,
+      title: 'สามารถเข้าใช้งานเว็บไซต์ห้องอาร์ดเวรด์ได้แล้ว!!!!!',
+      date: '',
+      image: '', // ใส่ URL รูปภาพที่นี่ ถ้ามี
+    },
+    {
+      id: 2,
+      title: 'ประกาศเปิดให้เข้าใช้งานเว็บไซต์ ยืม-คืน!!!',
+      date: '12/04/2566 10:30 น.',
+      image: '',
+    },
+    {
+      id: 3,
+      title: 'ข่าวสารเพิ่มเติม...',
+      date: '',
+      image: '',
+    },
+    {
+      id: 4,
+      title: 'ข่าวสารเพิ่มเติม...',
+      date: '',
+      image: '',
+    },
+    {
+      id: 5,
+      title: 'ข่าวสารเพิ่มเติม...',
+      date: '',
+      image: '',
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Layout>
-        <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold mb-6">{article.title}</h1>
-          <p className="text-gray-600 mb-4">{article.date}</p>
-          <img src={article.imageUrl} alt={article.title} className="w-full h-auto object-cover mb-6" />
-          <div className="text-gray-700 leading-relaxed">
-            {article.content}
-          </div>
+    <Layout>
+      <div className="p-8">
+        <h1 className="text-2xl font-bold mb-6">ข่าวสารเว็บไซต์</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {newsData.map((news) => (
+            <div key={news.id} className="relative bg-gray-200 rounded-lg p-4 flex items-center justify-center h-48">
+              {/* ถ้ามีรูปภาพจะแสดงรูป ถ้าไม่มีจะใช้ placeholder */}
+              {news.image ? (
+                <img src={news.image} alt={news.title} className="w-full h-full object-cover rounded-lg" />
+              ) : (
+                <div className="w-full h-full bg-gray-300 rounded-lg"></div>
+              )}
+              {/* ข้อความข่าว */}
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center p-4 rounded-lg">
+                <h2 className="text-white text-lg font-bold">{news.title}</h2>
+                {news.date && <p className="text-white text-sm">{news.date}</p>}
+              </div>
+            </div>
+          ))}
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
-export default FullNewsPage;
+export default NewsPage;
